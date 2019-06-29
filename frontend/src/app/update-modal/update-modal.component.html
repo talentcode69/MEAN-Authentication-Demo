@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Update</h1>
+<alert></alert>
+<div mat-dialog-content>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.username" placeholder="username" required>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.firstName" placeholder="firstName" required>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [(ngModel)]="data.lastName" placeholder="lastName" required>
+    </mat-form-field>
+    <mat-form-field>
+        <input [type]="hide ? 'password' : 'text'" matInput="password" [(ngModel)]="data.password" placeholder="password" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button (click)="onUpdateClick()" [disabled]="!data.username || !data.firstName || !data.lastName || !data.password">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Update
+  </button>
+</div>
